@@ -1,5 +1,6 @@
 class Object:
-    def __init__(self):
+    def __init__(self, id):
+        self.id = id
         self.name = "name"
         self.speed = 0
 
@@ -23,8 +24,8 @@ class Object:
         print(f"L'objet {self.name} est utilisé")
 
 class PowerPole(Object):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, id):
+        super().__init__(id)
         self.name = "Power Pole"
         self.speed = 70  # Relativement rapide à utiliser
         self.energy_cost = 0
@@ -44,8 +45,8 @@ class PowerPole(Object):
         self.race_specifications = ["Saiyan", "Android"]
 
 class SenzuBean(Object):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, id):
+        super().__init__(id)
         self.name = "Senzu Bean"
         self.speed = 100  # Utilisable instantanément
         self.energy_cost = -100  # Restaure entièrement l'énergie
@@ -65,8 +66,8 @@ class SenzuBean(Object):
         self.race_specifications = []  # Accessible à toutes les races
 
 class KintoUn(Object):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, id):
+        super().__init__(id)
         self.name = "Kinto-un"
         self.speed = 150  # Très rapide
         self.energy_cost = 5  # Nécessite un peu d'énergie pour être utilisé
@@ -86,8 +87,8 @@ class KintoUn(Object):
         self.race_specifications = ["Saiyan", "Namekian"]
 
 class DragonBall(Object):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, id):
+        super().__init__(id)
         self.name = "Dragon Ball"
         self.speed = 0  # Ne confère pas de bonus direct en combat
         self.energy_cost = 0

@@ -18,6 +18,7 @@ class DBSPattern:
                 self.current_state.handle_input(key)
 
     def change_state(self, new_state):
+        self.screen.in_battle = False
         self.current_state = new_state
 
 if __name__ == "__main__":

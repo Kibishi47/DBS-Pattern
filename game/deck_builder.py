@@ -109,24 +109,24 @@ class GameDeckBuilder:
             elif key == '2' and self.deck_builder.get_card_number() == DeckManager.max_card_amount:
                 self.validate_deck()
 
-    def handle_quantity_selection_input(self, key):
-        current_card = self.available_cards[self.current_card_index]
-        if key == 'KEY_UP':
-            if self.deck_builder.get_card_number(current_card) < current_card.unique_quantity and self.deck_builder.get_card_number() < DeckManager.max_card_amount:
-                self.deck_builder.add_card(current_card)
-            elif self.deck_builder.get_card_number() == DeckManager.max_card_amount:
-                # Si le deck est plein, on retire une autre carte pour ajouter celle-ci
-                for card in self.deck_builder.deck.cards:
-                    if card.get_name() != current_card.get_name():
-                        self.deck_builder.removeCard(card)
-                        self.deck_builder.add_card(current_card)
-                        break
-        elif key == 'KEY_DOWN':
-            if self.deck_builder.get_card_number(current_card) > 0:
-                self.deck_builder.removeCard(current_card)
-        elif key == 'KEY_ENTER' or key == '1':
-            self.state = "selecting_card"
-            self.menu_selection = 0
+    # def handle_quantity_selection_input(self, key):
+    #     current_card = self.available_cards[self.current_card_index]
+    #     if key == 'KEY_UP':
+    #         if self.deck_builder.get_card_number(current_card) < current_card.unique_quantity and self.deck_builder.get_card_number() < DeckManager.max_card_amount:
+    #             self.deck_builder.add_card(current_card)
+    #         elif self.deck_builder.get_card_number() == DeckManager.max_card_amount:
+    #             # Si le deck est plein, on retire une autre carte pour ajouter celle-ci
+    #             for card in self.deck_builder.deck.cards:
+    #                 if card.get_name() != current_card.get_name():
+    #                     self.deck_builder.removeCard(card)
+    #                     self.deck_builder.add_card(current_card)
+    #                     break
+    #     elif key == 'KEY_DOWN':
+    #         if self.deck_builder.get_card_number(current_card) > 0:
+    #             self.deck_builder.removeCard(current_card)
+    #     elif key == 'KEY_ENTER' or key == '1':
+    #         self.state = "selecting_card"
+    #         self.menu_selection = 0
 
     def validate_deck(self):
         if self.deck_builder.get_card_number() == DeckManager.max_card_amount:
@@ -142,7 +142,18 @@ class GameDeckBuilder:
             selections.append("Valider le deck")
         return selections
 
+    def handle_quantity_selection_input(self, key):
+        current_card = self.available_cards[self.current_card_index]
+        if key == 'KEY_UP':
+            if self.can_add_card(current_card):
+                self.deck_builder.add_card(current_card)
+        elif key == 'KEY_DOWN':
+            if self.deck_builder.get_card_number(current_card) > 0:
+                self.deck_builder.removeCard(current_card)
+        elif key == 'KEY_ENTER' or key == '1':
+            self.state = "selecting_card"
+            self.menu_selection = 0
+
     def can_add_card(self, card):
-        if self.deck_builder.get_card_number() >= DeckManager.max_card_amount:
-            return False
-        return self.deck_builder.get_card_number(card) < card.unique_quantity
+        return (self.deck_builder.get_card_number() < DeckManager.max_card_amount and 
+                self.deck_builder.get_card_number(card) < card.unique_quantity)

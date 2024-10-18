@@ -25,42 +25,42 @@ class TransformationState:
         max_life = self.race.original_stats.get_life() + self.sup_life
         if (actual_life - self.inf_life > max_life):
             self.inf_life += actual_life - max_life
-        return actual_life - self.inf_life
+        return actual_life
 
     def get_stamina(self):
         actual_stamina = self.race.stats.get_stamina() + self.sup_stamina
         max_stamina = self.race.original_stats.get_stamina() + self.sup_stamina
         if (actual_stamina - self.inf_stamina > max_stamina):
             self.inf_stamina += actual_stamina - max_stamina
-        return actual_stamina - self.inf_stamina
+        return actual_stamina
 
     def get_energy(self):
         actual_energy = self.race.stats.get_energy() + self.sup_energy
         max_energy = self.race.original_stats.get_energy() + self.sup_energy
         if (actual_energy - self.inf_energy > max_energy):
             self.inf_energy += actual_energy - max_energy
-        return actual_energy - self.inf_energy
+        return actual_energy
 
     def get_shield(self):
         actual_shield = self.race.stats.get_shield() + self.sup_shield
         max_shield = self.race.original_stats.get_shield() + self.sup_shield
         if (actual_shield - self.inf_shield > max_shield):
             self.inf_shield += actual_shield - max_shield
-        return actual_shield - self.inf_shield
+        return actual_shield
 
     def get_speed(self):
         actual_speed = self.race.stats.get_speed() + self.sup_speed
         max_speed = self.race.original_stats.get_speed() + self.sup_speed
         if (actual_speed - self.inf_speed > max_speed):
             self.inf_speed += actual_speed - max_speed
-        return actual_speed - self.inf_speed
+        return actual_speed
 
     def get_force(self):
         actual_force = self.race.stats.get_force() + self.sup_force
         max_force = self.race.original_stats.get_force() + self.sup_force
         if (actual_force - self.inf_force > max_force):
             self.inf_force += actual_force - max_force
-        return actual_force - self.inf_force
+        return actual_force
     
     def base_form(self):
         self.race.set_transformation(BaseForm(self.race))

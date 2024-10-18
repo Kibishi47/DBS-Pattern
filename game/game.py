@@ -2,6 +2,7 @@ from managers.team_manager import TeamManager
 from managers.deck_manager import DeckManager
 from managers.hand_manager import HandManager
 from managers.battle_manager import BattleManager
+from managers.observer import Observer
 from game.enemy import Enemy
 
 class Game:
@@ -17,6 +18,7 @@ class Game:
         self.battle_manager.init_game()
 
     def render(self, screen):
+        screen.in_battle = True
         active_warrior = self.team_manager.get_active_warrior()
         enemy_warrior = TeamManager.get_instance("enemy").get_active_warrior()
         
@@ -60,7 +62,7 @@ class Game:
             if self.team_manager.get_active_warrior().get_energy() >= player_card.get_energy_cost():
                 cards_by_player_instance.append((player_card, "player"))
             else:
-                print("Pas assez d'énergie pour jouer cette carte.")
+                Observer.get_instance().notify("Vous n'avez pas assez d'énergie pour jouer cette carte")
                 return
             
         if enemy_card:
@@ -82,6 +84,7 @@ class Game:
                 self.game_over("Défaite")
             else:
                 self.team_manager.set_active_warrior(self.team_manager.get_warriors()[0])
+                self.battle_manager.restore_deck("player")
 
         if enemy_warrior.get_life() <= 0:
             enemy_team = TeamManager.get_instance("enemy")
@@ -89,9 +92,9 @@ class Game:
             if not enemy_team.get_warriors():
                 self.game_over("Victoire")
             else:
+                self.battle_manager.restore_deck("enemy")
                 enemy_team.set_active_warrior(enemy_team.get_warriors()[0])
 
     def game_over(self, result):
-        from game.menu import Menu
-        print(f"Fin de la partie : {result}")
-        self.game.change_state(Menu(self.game))
+        from game.game_over import GameOverScreen
+        self.game.change_state(GameOverScreen(self.game, result))

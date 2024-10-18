@@ -1,5 +1,6 @@
 class Attack:
-    def __init__(self):
+    def __init__(self, id):
+        self.id = id
         self.name = "name"
         self.speed = 0
         
@@ -20,8 +21,8 @@ class Attack:
         self.race_specifications = []
 
 class Regeneration(Attack):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, id):
+        super().__init__(id)
         self.name = "Regeneration"
         self.speed = 50
         self.energy_cost = 0
@@ -31,8 +32,8 @@ class Regeneration(Attack):
         self.race_specifications = ["Namekian"]  # Spécifique aux Namekians
 
 class Afterimage(Attack):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, id):
+        super().__init__(id)
         self.name = "Afterimage"
         self.speed = 150  # Très rapide
         self.energy_cost = 10
@@ -42,8 +43,8 @@ class Afterimage(Attack):
         self.race_specifications = ["Saiyan"]
 
 class Kamehameha(Attack):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, id):
+        super().__init__(id)
         self.name = "Kamehameha"
         self.speed = 100
         self.energy_cost = 40  # Très énergivore
@@ -53,8 +54,8 @@ class Kamehameha(Attack):
         self.race_specifications = ["Saiyan"]
 
 class Blast(Attack):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, id):
+        super().__init__(id)
         self.name = "Blast"
         self.speed = 120  # Relativement rapide
         self.energy_cost = 15
@@ -64,8 +65,8 @@ class Blast(Attack):
         self.race_specifications = ["Saiyan", "Android"]
 
 class FastPunch(Attack):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, id):
+        super().__init__(id)
         self.name = "Fast Punch"
         self.speed = 140  # Très rapide
         self.energy_cost = 5
@@ -75,8 +76,8 @@ class FastPunch(Attack):
         self.race_specifications = ["Saiyan", "Android"]
 
 class LoadPunch(Attack):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, id):
+        super().__init__(id)
         self.name = "Load Punch"
         self.speed = 60  # Lent
         self.energy_cost = 20
@@ -86,8 +87,8 @@ class LoadPunch(Attack):
         self.race_specifications = ["Saiyan", "Android"]
 
 class FastKick(Attack):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, id):
+        super().__init__(id)
         self.name = "Fast Kick"
         self.speed = 130  # Rapide
         self.energy_cost = 5
@@ -97,8 +98,8 @@ class FastKick(Attack):
         self.race_specifications = ["Saiyan", "Android"]
 
 class LoadKick(Attack):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, id):
+        super().__init__(id)
         self.name = "Load Kick"
         self.speed = 50  # Plus lent que Fast Kick
         self.energy_cost = 25

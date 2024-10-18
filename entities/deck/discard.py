@@ -1,4 +1,4 @@
-class Hand:
+class Discard:
     def __init__(self, cards=None):
         if cards is None:
             self.cards = []

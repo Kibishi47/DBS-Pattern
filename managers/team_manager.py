@@ -6,6 +6,8 @@ T = TypeVar('T', bound='TeamManager')
 class TeamManager:
     _instances = {}
 
+    max_warrior = 3
+
     def __init__(self, instance_name):
         self.instance_name = instance_name
         self.active_warrior = None
@@ -21,6 +23,7 @@ class TeamManager:
         if warrior not in self.warriors:
             if len(self.warriors) == 0:
                 self.active_warrior = warrior
+            warrior.player_name = self.instance_name
             self.warriors.append(warrior)
         else:
             print(f"{warrior.get_name()} est déjà dans l'équipe.")

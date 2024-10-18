@@ -12,7 +12,7 @@ class Enemy:
         from managers.team_manager import TeamManager
         from entities.warrior.warrior import Warrior
         from races.race import Race
-        for i in range(3):
+        for i in range(TeamManager.max_warrior):
             warrior = Warrior(f"Enemy {i+1}", random.choice(Race.races))
             TeamManager.get_instance(self.player_instance).set_warrior(warrior)
 

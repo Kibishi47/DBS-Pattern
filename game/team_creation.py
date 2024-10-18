@@ -18,7 +18,7 @@ class TeamCreation:
             screen.set_message(f"Nom actuel: {self.name_input}\n\nAppuyez sur Entrée pour confirmer le nom")
             screen.set_selections([])
         else:
-            screen.set_title(f"Créer Guerrier {self.current_warrior + 1}/3")
+            screen.set_title(f"Créer Guerrier {self.current_warrior + 1}/{TeamManager.max_warrior}")
             screen.set_message(f"Nom: {self.name_input}\nRace: {self.races[self.selected_race]}")
             screen.set_selections(["Entrer le nom", "Changer de race", "Confirmer le guerrier"])
         
@@ -57,6 +57,6 @@ class TeamCreation:
                 self.name_input = ""
                 self.selected_race = 0
                 self.current_selection = 0
-                if self.current_warrior == 3:
+                if self.current_warrior == TeamManager.max_warrior:
                     from game.deck_builder import GameDeckBuilder
                     self.game.change_state(GameDeckBuilder(self.game))

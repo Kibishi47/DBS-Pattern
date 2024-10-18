@@ -9,13 +9,13 @@ class Deck:
             self.cards = cards
 
     def add_card(self, card):
-        if len(self.cards) < DeckManager.max_card_amount: 
-            self.cards.append(card)
-            return True
-        return False
+        self.cards.append(card)
     
     def remove_card(self, card):
-        self.cards.remove(card)
+        for c in self.cards:
+            if c.id == card.id:
+                self.cards.remove(c)
+                return
 
     def get_card_number(self, card = None):
         if card is not None:

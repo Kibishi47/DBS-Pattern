@@ -1,9 +1,10 @@
 from attacks.attack import Attack
 from objects.object import Object
+from transformations.transformation import TransformationState
 from gauge.gauge import EnergyGain, EnergyLose, LifeGain, LifeLose, StaminaGain, StaminaLose, ShieldGain, ShieldLose, ForceGain, ForceLose
 
 class Card:
-    def __init__(self):
+    def __init__(self, id):
         pass
 
     def use(self, user, target):
@@ -11,7 +12,8 @@ class Card:
 
 class AttackCard(Card):
 
-    def __init__(self, type_class: Attack):
+    def __init__(self, id, type_class: Attack):
+        self.id = id
         self.unique_quantity = 4
         self.attack = type_class
 
@@ -78,7 +80,8 @@ class AttackCard(Card):
 
 class ObjectCard(Card):
     
-    def __init__(self, type_class: Object):
+    def __init__(self, id, type_class: Object):
+        self.id = id
         self.unique_quantity = 2
         self.object = type_class
         self.name = type_class.name
@@ -142,3 +145,26 @@ class ObjectCard(Card):
         target.decor_stats(ShieldLose, self.object.shield_damage)
         target.decor_stats(ForceLose, self.object.force_damage)
         target.decor_stats(ShieldLose, self.object.speed_damage)
+
+class TransformationCard(Card):
+    
+    def __init__(self, id, type_class):
+        self.id = id
+        self.unique_quantity = 2
+        self.transformation = type_class
+        self.name = type_class.name
+
+    def get_name(self):
+        return self.transformation.name
+
+    def get_complete_name(self):
+        return f"{self.transformation.name} Transformation"
+    
+    def get_energy_cost(self):
+        return 0
+    
+    def get_speed(self):
+        return 1000
+
+    def use(self, user, target):
+        user.transformation(self.get_name())

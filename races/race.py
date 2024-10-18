@@ -1,5 +1,6 @@
 from transformations.transformation import BaseForm, SuperSaiyan, SuperSaiyan2, SuperSaiyan3, SuperSaiyanGod, SuperSaiyanBlue, SuperNamekian
 from entities.warrior.stats import Stats, SaiyanStats, NamekianStats, AndroidStats
+from managers.observer import Observer
 
 class Race:
     
@@ -14,6 +15,7 @@ class Race:
         self.original_stats = Stats()
         self.stats = Stats()
         self.transformation = BaseForm(self)
+        self.player_name = ""
 
     def decor_stats(self, decorator, amount):
         self.stats = decorator(self.stats, amount)
@@ -41,13 +43,11 @@ class Race:
     
     def set_transformation(self, transformation):
         self.transformation = transformation
-        print("TRANSFORMATION !!!")
-
+        
     def get_transformations(self):
-        return [
-            "base_form",
-            "ultra_instinct"
-        ]
+        return {
+            "Ultra Instinct": "ultra_instinct"
+        }
 
     def base_form(self):
         self.transformation.base_form()
@@ -63,16 +63,15 @@ class Saiyan(Race):
         self.stats = SaiyanStats()
 
     def get_transformations(self):
-        return [
-            "base_form",
-            "super_saiyan",
-            "super_saiyan_2",
-            "super_saiyan_3",
-            "super_saiyan_god",
-            "super_saiyan_blue",
-            "great_ape",
-            "ultra_instinct"
-        ]
+        return {
+            "Super Saiyan": "super_saiyan",
+            "Super Saiyan 2": "super_saiyan_2",
+            "Super Saiyan 3": "super_saiyan_3",
+            "Super Saiyan God": "super_saiyan_god",
+            "Super Saiyan Blue": "super_saiyan_blue",
+            "Great Ape": "great_ape",
+            "Ultra Instinct": "ultra_instinct"
+        }
 
     # Méthodes de transformation
     def super_saiyan(self):
@@ -101,11 +100,10 @@ class Namekian(Race):
         self.stats = NamekianStats()
 
     def get_transformations(self):
-        return [
-            "base_form",
-            "super_namekian",
-            "ultra_instinct"
-        ]
+        return {
+            "Super Namekian": "super_namekian",
+            "Ultra Instinct": "ultra_instinct"
+        }
 
     # Méthode de transformation
     def super_namekian(self):
