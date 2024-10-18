@@ -27,8 +27,8 @@ class Game:
         hand_cards = self.hand_manager.get_hand().cards
         card_info = "\n".join([f"{i+1}. {card.get_complete_name()} (Coût: {card.get_energy_cost()} énergie)" for i, card in enumerate(hand_cards)])
         
-        screen.set_message(f"Joueur: {active_warrior.get_name()} - Vie: {active_warrior.get_life()} - Énergie: {active_warrior.get_energy()}\n"
-                           f"Ennemi: {enemy_warrior.get_name()} - Vie: {enemy_warrior.get_life()} - Énergie: {enemy_warrior.get_energy()}\n\n"
+        screen.set_message(f"Joueur: {active_warrior.get_name()} - {active_warrior.get_race_name()} - Vie: {active_warrior.get_life()} - Énergie: {active_warrior.get_energy()}\n"
+                           f"Ennemi: {enemy_warrior.get_name()} - {enemy_warrior.get_race_name()} - Vie: {enemy_warrior.get_life()} - Énergie: {enemy_warrior.get_energy()}\n\n"
                            f"Cartes en main:\n{card_info}")
         
         selections = [f"Utiliser {card.get_complete_name()}" for card in hand_cards]
