@@ -6,7 +6,7 @@ class Menu:
 
     def render(self, screen):
         screen.set_title("Menu Principal")
-        screen.set_message("Bienvenue dans Dragon Ball Dungeon!")
+        screen.set_message("Bienvenue dans Dragon Ball Versus!")
         screen.set_selections(self.options)
         screen.current_selection = self.current_selection
         screen.render()
